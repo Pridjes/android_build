@@ -559,10 +559,23 @@ function print_lunch_menu()
     local uname=$(uname)
     echo
     echo "You're building on" $uname
+
     if [ "$(uname)" = "Darwin" ] ; then
        echo "  (ohai, iSheep!!)"
     fi
     echo
+    tput setaf 3
+    echo
+    echo "           ·▄▄▄▄        ▄▄▄▄▄          .▄▄ · "
+    echo "           ██▪ ██ ▪     •██      ▪     ▐█ ▀. "
+    echo "           ▐█· ▐█▌ ▄█▀▄  ▐█.▪     ▄█▀▄ ▄▀▀▀█▄"
+    echo "           ██. ██ ▐█▌.▐▌ ▐█▌·    ▐█▌.▐▌▐█▄▪▐█"
+    echo "           ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀      ▀█▄▀▪ ▀▀▀▀ "
+    echo "                     Droid On Time            "
+    tput sgr0;
+    echo ""
+    echo "              Welcome to the device menu           "
+    echo ""
     if [ "z${DOT_DEVICES_ONLY}" != "z" ]; then
        echo "Breakfast menu... pick a combo:"
        echo " "
