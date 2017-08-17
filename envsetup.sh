@@ -130,6 +130,18 @@ function check_product()
         echo "Couldn't locate the top of the tree.  Try setting TOP." >&2
         return
     fi
+    if (echo -n $1 | grep -q -e "^dot_") ; then
+        DOT_BUILD=$(echo -n $1 | sed -e 's/^dot_//g')
+    else
+	#Fall back to aosp_<product>
+	if (echo -n $1 | grep -q -e "^aosp_") ; then
+        	DOT_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
+	else
+		DOT_BUILD=
+	fi
+    fi
+    export DOT_BUILD
+
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
         TARGET_BUILD_TYPE= \
@@ -609,6 +621,7 @@ function lunch()
     fi
 
     check_product $product
+
     TARGET_PRODUCT=$product \
     TARGET_BUILD_VARIANT=$variant \
     TARGET_PLATFORM_VERSION=$version \
